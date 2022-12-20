@@ -17,6 +17,10 @@ interface iCartContext {
   openModal: () => void;
   addCart: (productData: iCartProducts) => void;
   validateUser: (data: iCartProducts) => void;
+  deleted: (product: {}) => void;
+  sum: any;
+  deletedAll: () => void;
+  removeSameItem: (product: iCartCurrentSale) => void;
 }
 export interface iCartProducts {
   id: number;
@@ -98,6 +102,33 @@ export const CartProvider = ({ children }: iCartContextProps) => {
     }
   };
 
+  const deleted = (product: {}) => {
+    const newCart = currentSale.filter((sale: any) => sale !== product);
+    setCurrentSale(newCart);
+  };
+  const sum = currentSale.reduce((firstValue: any, actualValue: any) => {
+    return actualValue.price * actualValue.quantity + firstValue;
+  }, 0);
+
+  const deletedAll = () => {
+    setCurrentSale([]);
+  };
+
+  const removeSameItem = (product: iCartCurrentSale) => {
+    if (product.quantity === 1) {
+      deleted(product);
+    }
+    if (product.quantity > 1) {
+      setCurrentSale((old) =>
+        old.map((oldProduct) =>
+          product.id === oldProduct.id
+            ? { ...currentSale, ...product, quantity: product.quantity - 1 }
+            : oldProduct
+        )
+      );
+    }
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -112,6 +143,10 @@ export const CartProvider = ({ children }: iCartContextProps) => {
         openModal,
         addCart,
         validateUser,
+        deleted,
+        sum,
+        deletedAll,
+        removeSameItem,
       }}
     >
       {children}

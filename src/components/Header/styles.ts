@@ -10,28 +10,32 @@ export const HeaderStyled = styled.header`
   .divContainer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
     height: 100%;
-    margin: 0 10px;
   }
   .divIcons {
+    width: 98%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+  }
+  .divIcons div {
+    display: flex;
     gap: 10px;
+    margin-right: 10px;
   }
   .logo {
     height: 24px;
     width: 160px;
     margin-top: 10px;
+    display: none;
   }
   .search {
     width: 25px;
     height: 25px;
     z-index: 2;
   }
-  .search:hover {
-  }
+
   .spanCart {
     background: #27ae60;
     width: 20px;
@@ -39,7 +43,7 @@ export const HeaderStyled = styled.header`
     color: white;
     position: absolute;
     top: 16px;
-    right: 46px;
+    right: 80px;
     border-radius: 4px;
   }
   .cart {
@@ -51,7 +55,7 @@ export const HeaderStyled = styled.header`
     height: 35px;
   }
   .inputSearch {
-    width: 60%;
+    width: 50%;
     background: #ffffff;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
@@ -81,7 +85,7 @@ export const HeaderStyled = styled.header`
     color: white;
     font-size: 14px;
     position: absolute;
-    left: 46%;
+    left: 35%;
     top: 15px;
     z-index: 2;
   }
@@ -110,21 +114,30 @@ export const HeaderStyled = styled.header`
       align-items: center;
       justify-content: space-between;
     }
+    .divIcons div {
+      display: flex;
+      gap: 20px;
+      margin-top: 30px;
+    }
     .logo {
       height: 24px;
       width: 160px;
       margin-top: 10px;
+      display: block;
     }
     .cart {
-      width: 25px;
-      height: 25px;
+      width: 30px;
+      height: 30px;
+    }
+    .spanCart {
+      top: 30px;
     }
     .hidden {
       display: block;
     }
     .logout {
-      width: 25px;
-      height: 25px;
+      width: 30px;
+      height: 30px;
     }
     .inputSearch {
       width: 360px;
@@ -167,12 +180,11 @@ export const HeaderStyled = styled.header`
 `;
 
 export const ModalContainer = styled.div`
-  width: 300px;
+  width: 90%;
   min-height: 260px;
   background-color: white;
   z-index: 10;
   position: absolute;
-  top: 0;
   background: #f5f5f5;
   box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
@@ -293,7 +305,6 @@ export const ModalContainer = styled.div`
   @media (min-width: 700px) {
     width: 500px;
     min-height: 260px;
-    background-color: white;
     z-index: 10;
     position: absolute;
     background: #f5f5f5;

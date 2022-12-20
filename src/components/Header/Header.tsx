@@ -30,7 +30,6 @@ export const Header = () => {
 
   const filteredCards = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(inputValue);
     const filtered = products.filter((product) => {
       if (
         product.name.toLowerCase().includes(inputValue.trim()) ||
@@ -58,17 +57,17 @@ export const Header = () => {
               <img className="search" alt="" src={search} />
             </button>
           </form>
-
-          <button className="buttonCart" onClick={openModal}>
-            <span className="spanCart">{sumCart}</span>
-            <img className="cart" src={cart} />
-          </button>
-          <button>
-            <img onClick={cleanStorage} className="logout" src={logout} />
-          </button>
+          <div>
+            <button className="buttonCart" onClick={openModal}>
+              <span className="spanCart">{sumCart}</span>
+              <img className="cart" src={cart} />
+            </button>
+            <button>
+              <img onClick={cleanStorage} className="logout" src={logout} />
+            </button>
+          </div>
         </div>
       </div>
-      {isModal && <Modal />}
     </HeaderStyled>
   );
 };

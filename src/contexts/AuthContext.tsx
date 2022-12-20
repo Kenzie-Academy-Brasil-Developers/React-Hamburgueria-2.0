@@ -39,7 +39,7 @@ const AuthProvider = ({ children }: iAuthContext) => {
   const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
-  const handleRedirectHome = () => {
+  const handleRedirectHome = async () => {
     navigate("/home");
   };
   const handleRedirectLogin = () => {
@@ -65,7 +65,6 @@ const AuthProvider = ({ children }: iAuthContext) => {
       .post("/login", data)
       .then((response) => {
         console.log(response.data);
-
         localStorage.clear();
         localStorage.setItem("authToken", response.data.accessToken);
         setTimeout(() => {

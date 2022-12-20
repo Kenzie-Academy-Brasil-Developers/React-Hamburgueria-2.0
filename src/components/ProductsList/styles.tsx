@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const UlStyled = styled.ul`
   height: 350px;
-  width: 100%;
+  width: 100vw;
   overflow-x: auto;
   list-style: none;
   display: flex;

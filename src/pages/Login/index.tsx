@@ -6,16 +6,25 @@ import * as yup from "yup";
 import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { loginRequisition, handleRedirectHome } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { loginRequisition, handleRedirectLogin, handleRedirectHome } =
+    useContext(AuthContext);
 
   useEffect(() => {
-    const token = window.localStorage.getItem("authToken");
-    if (token) {
-      handleRedirectHome();
-    }
+    const autoLogin = async () => {
+      const token = window.localStorage.getItem("authToken");
+      if (token) {
+        navigate("/home", { replace: true });
+      } else {
+        handleRedirectLogin();
+      }
+    };
+    autoLogin();
   }, []);
+
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatório"),
     password: yup.string().required("Senha obrigatória"),

@@ -3,53 +3,19 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import {
-  CartContext,
-  iCartCurrentSale,
-  iCartProducts,
-} from "../../contexts/CartContext";
+import { CartContext } from "../../contexts/CartContext";
 import trash from "../../assets/trash.png";
-import { ProductsList } from "../ProductsList/ProductsList";
 
 const Modal = () => {
   const {
     currentSale,
-    setCurrentSale,
-    filteredProducts,
-    setFilteredProducts,
-    setIsModal,
-    isModal,
     openModal,
     addCart,
+    deleted,
+    sum,
+    deletedAll,
+    removeSameItem,
   } = useContext(CartContext);
-
-  const deleted = (product: {}) => {
-    const newCart = currentSale.filter((sale: any) => sale !== product);
-    setCurrentSale(newCart);
-  };
-  const sum = currentSale.reduce((firstValue: any, actualValue: any) => {
-    return actualValue.price * actualValue.quantity + firstValue;
-  }, 0);
-
-  const deletedAll = () => {
-    setCurrentSale([]);
-  };
-  console.log(currentSale);
-
-  const removeSameItem = (product: iCartCurrentSale) => {
-    if (product.quantity === 1) {
-      deleted(product);
-    }
-    if (product.quantity > 1) {
-      setCurrentSale((old) =>
-        old.map((oldProduct) =>
-          product.id === oldProduct.id
-            ? { ...currentSale, ...product, quantity: product.quantity - 1 }
-            : oldProduct
-        )
-      );
-    }
-  };
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Nome obrigatório"),
@@ -98,7 +64,7 @@ const Modal = () => {
                 </div>
               </div>
               <button className="trash" onClick={() => deleted(product)}>
-                <img src={trash} />
+                <img alt="" src={trash} />
               </button>
             </li>
           ))}
