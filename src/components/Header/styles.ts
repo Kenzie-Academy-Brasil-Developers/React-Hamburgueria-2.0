@@ -10,19 +10,17 @@ export const HeaderStyled = styled.header`
   .divContainer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    max-width: 1250px;
     width: 100%;
     height: 100%;
   }
   .divIcons {
-    width: 98%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  .divIcons div {
-    display: flex;
     gap: 10px;
-    margin-right: 10px;
   }
   .logo {
     height: 24px;
@@ -35,16 +33,20 @@ export const HeaderStyled = styled.header`
     height: 25px;
     z-index: 2;
   }
-
+  .search:hover {
+  }
   .spanCart {
     background: #27ae60;
     width: 20px;
     height: 20px;
     color: white;
     position: absolute;
-    top: 16px;
-    right: 80px;
+    top: -8px;
+    right: -8px;
     border-radius: 4px;
+  }
+  .buttonCart {
+    position: relative;
   }
   .cart {
     width: 25px;
@@ -54,15 +56,18 @@ export const HeaderStyled = styled.header`
     width: 35px;
     height: 35px;
   }
+  form {
+    position: relative;
+    width: 70%;
+    height: 50px;
+  }
   .inputSearch {
-    width: 50%;
+    width: 100%;
+    height: 100%;
+    position: relative;
     background: #ffffff;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
-    height: 50px;
-    position: absolute;
-    top: 10px;
-    left: 10px;
     padding-left: 10px;
     z-index: 1;
     display: block;
@@ -75,7 +80,6 @@ export const HeaderStyled = styled.header`
   .hidden {
     display: none;
   }
-
   .buttonFilter {
     background: #27ae60;
     border: 2px solid #27ae60;
@@ -85,8 +89,9 @@ export const HeaderStyled = styled.header`
     color: white;
     font-size: 14px;
     position: absolute;
-    left: 35%;
-    top: 15px;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 2;
   }
   .buttonFilter:hover input.hidden {
@@ -103,78 +108,15 @@ export const HeaderStyled = styled.header`
   }
 
   @media (min-width: 700px) {
-    .divContainer {
-      width: 1280px;
-      justify-content: space-between;
-      position: relative;
+    .logo {
+      display: block;
     }
     .divIcons {
+      width: auto;
       display: flex;
-      width: 480px;
       align-items: center;
-      justify-content: space-between;
-    }
-    .divIcons div {
-      display: flex;
-      gap: 20px;
-      margin-top: 30px;
-    }
-    .logo {
-      height: 24px;
-      width: 160px;
-      margin-top: 10px;
-      display: block;
-    }
-    .cart {
-      width: 30px;
-      height: 30px;
-    }
-    .spanCart {
-      top: 30px;
-    }
-    .hidden {
-      display: block;
-    }
-    .logout {
-      width: 30px;
-      height: 30px;
-    }
-    .inputSearch {
-      width: 360px;
-      background: #ffffff;
-      border: 2px solid #e0e0e0;
-      border-radius: 8px;
-      height: 50px;
-      position: relative;
-      padding-left: 10px;
-      z-index: 1;
-      display: block;
-    }
-    input::placeholder {
-      font-size: 14px;
-      color: #e0e0e0;
-      position: relative;
-    }
-
-    .buttonFilter {
-      background: #27ae60;
-      border: 2px solid #27ae60;
-      border-radius: 8px;
-      width: 50px;
-      height: 40px;
-      color: white;
-      font-size: 14px;
-      position: absolute;
-      left: 1110px;
-      top: 30px;
-      z-index: 2;
-    }
-    button {
-      border: none;
-    }
-    button img {
-      width: 20px;
-      height: 20px;
+      justify-content: center;
+      gap: 25px;
     }
   }
 `;

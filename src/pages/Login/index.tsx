@@ -26,8 +26,11 @@ const Login = () => {
   }, []);
 
   const formSchema = yup.object().shape({
-    email: yup.string().required("Email obrigatório"),
-    password: yup.string().required("Senha obrigatória"),
+    email: yup.string().required("Email obrigatório").email("Email inválido"),
+    password: yup
+      .string()
+      .required("Senha obrigatória")
+      .min(6, "Mínimo 6 dígitos"),
   });
 
   const {
@@ -45,12 +48,12 @@ const Login = () => {
           <h2>Login</h2>
         </div>
         <div className="inputBox">
-          <input required={true} {...register("email")} />
+          <input {...register("email")} />
           <span>Email</span>
           <p>{errors.email?.message}</p>
         </div>
         <div className="inputBox">
-          <input type="password" required={true} {...register("password")} />
+          <input type="password" {...register("password")} />
           <span>Senha</span>
           <p>{errors.password?.message}</p>
         </div>
