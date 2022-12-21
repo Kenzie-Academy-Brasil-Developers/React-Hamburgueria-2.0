@@ -55,6 +55,7 @@ export const HeaderStyled = styled.header`
   .logout {
     width: 35px;
     height: 35px;
+    margin-left: 10px;
   }
   form {
     position: relative;
