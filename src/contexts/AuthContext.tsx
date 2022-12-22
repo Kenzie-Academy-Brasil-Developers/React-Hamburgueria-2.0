@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import { toast } from "react-toastify";
 
 interface iAuthContext {
   children: React.ReactNode;
@@ -73,7 +74,7 @@ const AuthProvider = ({ children }: iAuthContext) => {
       })
       .catch((error) => {
         console.log(error);
-        console.log(error.response.data);
+        toast("Email ou senha incorretos");
       });
   };
 
