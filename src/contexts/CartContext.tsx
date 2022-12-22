@@ -11,7 +11,7 @@ interface iCartContext {
   setCurrentSale: React.Dispatch<React.SetStateAction<iCartCurrentSale[]>>;
   filteredProducts: iCartProducts[];
   setFilteredProducts: React.Dispatch<React.SetStateAction<iCartProducts[]>>;
-  listRequisition: (data: iCartProducts) => void;
+  listRequisition: () => void;
   setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
   isModal: boolean;
   openModal: () => void;
@@ -54,19 +54,20 @@ export const CartProvider = ({ children }: iCartContextProps) => {
     setIsModal((oldState) => !oldState);
   };
 
-  useEffect(() => {
-    if (token) {
-      listRequisition();
-    }
-  }, [token]);
   const listRequisition = async () => {
-    try {
-      const response = await api.get("/products", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setProducts(response.data);
-    } catch (error) {
-      console.error(error);
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      try {
+        const response = await api.get("/products", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setProducts(response.data);
+      } catch (error) {
+        localStorage.clear();
+        navigate("/");
+      }
+    } else {
+      navigate("/");
     }
   };
 

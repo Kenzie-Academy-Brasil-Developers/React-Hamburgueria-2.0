@@ -6,19 +6,11 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { CartContext } from "../../contexts/CartContext";
 
 const Home = () => {
-  const { isModal, openModal } = useContext(CartContext);
+  const { listRequisition, isModal, openModal } = useContext(CartContext);
   const { handleRedirectLogin, handleRedirectHome } = useContext(AuthContext);
 
   useEffect(() => {
-    const autoHome = async () => {
-      const token = window.localStorage.getItem("authToken");
-      if (!token) {
-        handleRedirectLogin();
-      } else {
-        await handleRedirectHome();
-      }
-    };
-    autoHome();
+    listRequisition();
   }, []);
 
   return (

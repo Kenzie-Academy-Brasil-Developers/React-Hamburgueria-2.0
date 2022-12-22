@@ -39,7 +39,7 @@ const AuthProvider = ({ children }: iAuthContext) => {
   const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
-  const handleRedirectHome = async () => {
+  const handleRedirectHome = () => {
     navigate("/home");
   };
   const handleRedirectLogin = () => {
