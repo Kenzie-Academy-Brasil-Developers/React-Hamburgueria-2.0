@@ -8,9 +8,7 @@ function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <Providers>
-        <RoutesMain />
-      </Providers>
+      <RoutesMain />
     </div>
   );
 }

@@ -41,7 +41,7 @@ const Register = () => {
       <form onSubmit={handleSubmit(registerRequisition)}>
         <div>
           <h2>Cadastro</h2>
-          <Link to={"login"}>Retornar para o login</Link>
+          <Link to={"/"}>Retornar para o login</Link>
         </div>
         <div className="inputBox">
           <input type="text" required={true} {...register("name")} />

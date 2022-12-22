@@ -13,18 +13,6 @@ const Login = () => {
   const { loginRequisition, handleRedirectLogin, handleRedirectHome } =
     useContext(AuthContext);
 
-  useEffect(() => {
-    const autoLogin = async () => {
-      const token = window.localStorage.getItem("authToken");
-      if (token) {
-        navigate("/home", { replace: true });
-      } else {
-        handleRedirectLogin();
-      }
-    };
-    autoLogin();
-  }, []);
-
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatório").email("Email inválido"),
     password: yup

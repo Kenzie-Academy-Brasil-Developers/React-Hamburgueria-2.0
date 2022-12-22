@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import React from "react";
@@ -73,8 +73,22 @@ const AuthProvider = ({ children }: iAuthContext) => {
       })
       .catch((error) => {
         console.log(error);
+        console.log(error.response.data);
       });
   };
+
+  useEffect(() => {
+    const autoLogin = () => {
+      const token = window.localStorage.getItem("authToken");
+      if (token) {
+        navigate("/home", { replace: true });
+      } else {
+        handleRedirectLogin();
+      }
+    };
+    autoLogin();
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
